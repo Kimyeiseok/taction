@@ -37,10 +37,6 @@ export const LoginForm = props => {
 		allowRedirect
 	} = props
 
-	const initialCredential = {
-		email: 'user1@themenate.net',
-		password: '2005ipo'
-	}
 
 	const onLogin = values => {
 		showLoading()
@@ -106,7 +102,6 @@ export const LoginForm = props => {
 			<Form 
 				layout="vertical" 
 				name="login-form" 
-				initialValues={initialCredential}
 				onFinish={onLogin}
 			>
 				<Form.Item 
@@ -122,7 +117,7 @@ export const LoginForm = props => {
 							message: 'Please enter a validate email!'
 						}
 					]}>
-					<Input prefix={<MailOutlined className="text-primary" />}/>
+					<Input prefix={<MailOutlined className="text-primary" />} placeholder="  이메일을 입력하세요"/>
 				</Form.Item>
 				<Form.Item 
 					name="password" 
@@ -147,17 +142,17 @@ export const LoginForm = props => {
 						}
 					]}
 				>
-					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
+					<Input.Password prefix={<LockOutlined className="text-primary" />} placeholder="  비밀번호를 입력하세요"/>
 				</Form.Item>
 				<Form.Item>
 					<Button type="primary" htmlType="submit" block loading={loading}>
 						Sign In
 					</Button>
 				</Form.Item>
-				{
+			{/*	{
 					otherSignIn ? renderOtherSignIn : null
 				}
-				{ extra }
+				{ extra } */}
 			</Form>
 		</>
 	)

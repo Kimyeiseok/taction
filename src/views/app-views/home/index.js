@@ -1,10 +1,14 @@
-import React from 'react'
+import React , {useEffect} from "react";
 
 const Home = () => {
+	
+	
 	return (
-		<div>
-			Home component works!
-		</div>
+		<>
+			<div>
+				Home component works!
+			</div>
+		</>
 	)
 }
 

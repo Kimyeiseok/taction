@@ -1,5 +1,8 @@
 {
 	"home": "Home",
+	"userlist": "userlist",
+	"dashboard": "dashboard",
+	"connect wallet": "connect wallet",
 	
 	"sidenav.dashboard": "Dashboard",
 	"sidenav.dashboard.default": "Default",

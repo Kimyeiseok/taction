@@ -17,6 +17,17 @@ const rules = {
 			message: 'Please enter a validate email!'
 		}
 	],
+	name: [
+		{ 
+			required: true,
+			message: 'Please input your name'
+		},
+		{ 
+			type: 'string',
+			message: 'Please enter a validate email!'
+		}
+	],
+	
 	password: [
 		{ 
 			required: true,
@@ -82,7 +93,15 @@ export const RegisterForm = (props) => {
 					rules={rules.email}
 					hasFeedback
 				>
-					<Input prefix={<MailOutlined className="text-primary" />}/>
+					<Input prefix={<MailOutlined className="text-primary" />} placeholder="  이메일을 입력하세요"/>
+				</Form.Item>
+				<Form.Item 
+					name="name" 
+					label="Name" 
+					rules={rules.name}
+					hasFeedback
+				>
+					<Input prefix={<MailOutlined className="text-primary" />} placeholder="  이름을 입력하세요"/>
 				</Form.Item>
 				<Form.Item 
 					name="password" 
@@ -90,7 +109,7 @@ export const RegisterForm = (props) => {
 					rules={rules.password}
 					hasFeedback
 				>
-					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
+					<Input.Password prefix={<LockOutlined className="text-primary" />} placeholder="  비밀번호를 입력하세요"/>
 				</Form.Item>
 				<Form.Item 
 					name="confirm" 
@@ -98,7 +117,7 @@ export const RegisterForm = (props) => {
 					rules={rules.confirm}
 					hasFeedback
 				>
-					<Input.Password prefix={<LockOutlined className="text-primary" />}/>
+					<Input.Password prefix={<LockOutlined className="text-primary" />} placeholder="  비밀번호를 입력하세요"/>
 				</Form.Item>
 				<Form.Item>
 					<Button type="primary" htmlType="submit" block loading={loading}>

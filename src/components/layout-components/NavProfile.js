@@ -1,50 +1,41 @@
-import React from "react";
+import React  from "react";
 import { Menu, Dropdown, Avatar } from "antd";
 import { connect } from 'react-redux'
 import { 
   EditOutlined, 
   SettingOutlined, 
-  ShopOutlined, 
-  QuestionCircleOutlined, 
   LogoutOutlined 
 } from '@ant-design/icons';
 import Icon from 'components/util-components/Icon';
-import { signOut } from 'redux/actions/Auth';
+import { signOut,  } from 'redux/actions/Auth';
+// import FirebaseService from 'services/FirebaseService'
+
 
 const menuItem = [
 	{
 		title: "Edit Profile",
 		icon: EditOutlined ,
 		path: "/"
-    },
-    
+    },  
     {
 		title: "Account Setting",
 		icon: SettingOutlined,
 		path: "/"
     },
-    {
-		title: "Billing",
-		icon: ShopOutlined ,
-		path: "/"
-	},
-    {
-		title: "Help Center",
-		icon: QuestionCircleOutlined,
-		path: "/"
-	}
 ]
 
-export const NavProfile = ({signOut}) => {
-  const profileImg = "/img/avatars/thumb-1.jpg";
+export const NavProfile = (props) => {
+   const {signOut, userInfo} = props;
+
+  const profileImg = userInfo.photoURL
   const profileMenu = (
     <div className="nav-profile nav-dropdown">
       <div className="nav-profile-header">
         <div className="d-flex">
           <Avatar size={45} src={profileImg} />
           <div className="pl-3">
-            <h4 className="mb-0">Charlie Howard</h4>
-            <span className="text-muted">Frontend Developer</span>
+            <h4 className="mb-0">{userInfo.displayName}</h4>
+            <span className="text-muted">{userInfo.email}</span>
           </div>
         </div>
       </div>
@@ -81,4 +72,9 @@ export const NavProfile = ({signOut}) => {
   );
 }
 
-export default connect(null, {signOut})(NavProfile)
+const mapStateToProps = ({auth}) => {
+	const { userInfo } = auth;
+  return { userInfo }
+}
+
+export default connect(mapStateToProps, {signOut})(NavProfile)

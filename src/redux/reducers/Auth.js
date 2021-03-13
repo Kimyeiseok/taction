@@ -16,6 +16,7 @@ const initState = {
   showMessage: false,
   redirect: '',
   token: localStorage.getItem(AUTH_TOKEN),
+  userInfo: '',
 }
 
 const auth = (state = initState, action) => {
@@ -25,7 +26,8 @@ const auth = (state = initState, action) => {
 				...state,
 				loading: false,
 				redirect: '/',
-				token: action.token
+				token: action.token,
+				userInfo: action.userInfo
 			}
 		case SHOW_AUTH_MESSAGE: 
 			return {
@@ -52,6 +54,7 @@ const auth = (state = initState, action) => {
 			return {
 			  ...state,
 			  loading: false,
+			  redirect: '/',
 			  token: action.token
 			}
 		}

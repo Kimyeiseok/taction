@@ -33,9 +33,9 @@ const getLogo = (props) => {
   }
 
   if (navCollapsed) {
-    return '/img/logo-sm.png'
+    return '/img/TACTION-sm.png'
   }
-  return '/img/logo.png'
+  return '/img/TACTION.png'
 }
 
 const getLogoDisplay = (isMobile, mobileLogo) => {

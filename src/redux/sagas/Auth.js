@@ -22,12 +22,12 @@ export function* signInWithFBEmail() {
   yield takeEvery(SIGNIN, function* ({payload}) {
 		const {email, password} = payload;
 		try {
-			const user = yield call(FirebaseService.signInEmailRequest, email, password);
+			 const user = yield call(FirebaseService.signInEmailRequest, email, password);
 			if (user.message) {
 				yield put(showAuthMessage(user.message));
 			} else {
 				localStorage.setItem(AUTH_TOKEN, user.user.uid);
-				yield put(authenticated(user.user.uid));
+				yield put(authenticated(user.user.uid, user.user));
 			}
 		} catch (err) {
 			yield put(showAuthMessage(err));
@@ -53,14 +53,16 @@ export function* signOut() {
 
 export function* signUpWithFBEmail() {
   yield takeEvery(SIGNUP, function* ({payload}) {
-		const {email, password} = payload;
+		const {email, password, name} = payload;
 		try {
-			const user = yield call(FirebaseService.signUpEmailRequest, email, password);
+			const user = yield call(FirebaseService.signUpEmailRequest, email, password, name);		
 			if (user.message) {
 				yield put(showAuthMessage(user.message));
 			} else {
+				yield call(FirebaseService.dbStoreAccount, user.user.uid, user.user.email, user.user.displayName)
 				localStorage.setItem(AUTH_TOKEN, user.user.uid);
 				yield put(signUpSuccess(user.user.uid));
+				yield put(authenticated(user.user.uid, user.user));
 			}
 		} catch (error) {
 			yield put(showAuthMessage(error));

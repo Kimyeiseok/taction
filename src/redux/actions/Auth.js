@@ -21,10 +21,11 @@ export const signIn = (user) => {
   }
 };
 
-export const authenticated = (token) => {
+export const authenticated = (token, userInfo) => {
   return {
     type: AUTHENTICATED,
-    token
+    token,
+	userInfo
   }
 };
 
@@ -53,6 +54,8 @@ export const signUpSuccess = (token) => {
     token
   };
 };
+
+
 
 export const signInWithGoogle = () => {
   return {
